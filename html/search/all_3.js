@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mute_5',['Mute',['../classVtDevice.html#a2d8fa0553c34252fb75c522cb7d07a14',1,'VtDevice']]]
+  ['init_0',['init',['../class_vt_s_d_k.html#a475b46752fe2c52ed4090194ec252807',1,'VtSDK']]]
 ];

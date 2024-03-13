@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hookoff_2',['HookOff',['../classVtDevice.html#ad155f595c75eed076b1fcd505d586456',1,'VtDevice']]],
-  ['hookon_3',['HookOn',['../classVtDevice.html#a2ddcc7e8de58da6c4ea4a7c958a12764',1,'VtDevice']]]
+  ['enumeratedevices_0',['enumerateDevices',['../class_vt_s_d_k.html#a2be6e798e2bf240ba038f9d88026db2a',1,'VtSDK']]],
+  ['exit_1',['exit',['../class_vt_s_d_k.html#a88001d41c56ef2add93f3c5d5990984d',1,'VtSDK']]]
 ];
