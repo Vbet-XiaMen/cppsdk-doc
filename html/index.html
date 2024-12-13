@@ -25,7 +25,7 @@
   <td id="projectalign">
    <div id="projectname">VT SDK<span id="projectnumber">&#160;1.0.0</span>
    </div>
-   <div id="projectbrief">API for controlling the headset state</div>
+   <div id="projectbrief">API for managing the VT headset</div>
   </td>
  </tr>
  </tbody>
@@ -75,53 +75,57 @@ $(function() {
   <div class="headertitle"><div class="title">Tutorial </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Below is the an example of the SDK usage </p><pre class="fragment">            #include &lt;sdk.h&gt;
-            #include &lt;iostream&gt;
-            using namespace std;
+<div class="textblock"><p>Below is the an example of the SDK usage </p><pre class="fragment">    #include &lt;sdk.h&gt;
+    #include &lt;iostream&gt;
+    using namespace std;
 
-            int main()
-            {
-                //init the SDK
-                auto res = VtSDK::init();
-                if (res == 0) {
-                  //get a list of devices attached to the PC 
-                  auto devices = VtSDK::enumerateDevices();
+    int main()
+    {
+        //init the SDK
+        auto res = VtSDK::init();
+        if (res == 0) {
+            //get a list of devices attached to the PC 
+            auto devices = VtSDK::enumerateDevices();
 
-                  //use the first one for call control, just for demo purpose
-                  auto device = devices[0];
+            //use the first one for call control, just for demo purpose
+            auto device = devices[0];
 
-                  //listen to the device event(i.e. user interaction on the physical buttons on the device)
-                  bool success = device-&gt;subscribe([](DeviceEvent ev) {
-                      if (ev == DeviceEvent::OFFHOOK) {
-                          cout &lt;&lt; "deive has gone to offhook state, softphone should answer the call"&lt;&lt;endl;
-                          .....softphone sync the state 
-                      }
-                      if (ev == DeviceEvent::ONHOOK) {
-                          cout &lt;&lt; "deive has gone to onhook state, softphone should end the call" &lt;&lt;endl;
-                          .....softphone sync the state 
-                      }
-                      if (ev == DeviceEvent::MUTE) {
-                          cout &lt;&lt; "deive mute has toggled" &lt;&lt; endl;
-                          .....softphone sync the state 
-                      }
-                      if (ev == DeviceEvent::REJECT) {
-                          cout &lt;&lt; "incomming call was rejected by the device" &lt;&lt; endl;
-                          .....softphone sync the state 
-                      }
-                  });
-                  if (success) {
-                      //start ringing effect on the device
-                      device-&gt;ring();
-                  }
-                  while (true)
-                  {
-                     ...softphone normal event loop
-                  }
-                  //exit the sdk, should be called whenever possible
-                  VtSDK::exit();
+            //listen to the device event(i.e. user interaction on the physical buttons on the device)
+            bool success = device-&gt;subscribe([](DeviceEvent ev) {
+                if (ev == DeviceEvent::ACCEPT_CALL) {
+                    cout &lt;&lt; "call was accepted by the device, softphone should answer the call" &lt;&lt; endl;
+                    //.....softphone sync the state
                 }
-                return 0;
+                if (ev == DeviceEvent::END_CALL) {
+                    cout &lt;&lt; "call was ended by the device, softphone should end the call" &lt;&lt; endl;
+                    //.....softphone sync the state
+                }
+                if (ev == DeviceEvent::MUTE_CALL) {
+                    cout &lt;&lt; "call was muted by the device, softphone should mute the call" &lt;&lt; endl;
+                    //.....softphone sync the state
+                }
+                if (ev == DeviceEvent::UNMUTE_CALL) {
+                    cout &lt;&lt; "call was unmuted by the device, softphone should unmute the call" &lt;&lt; endl;
+                    //.....softphone sync the state
+                }
+                if (ev == DeviceEvent::REJECT) {
+                    cout &lt;&lt; "incomming call was rejected by the device, softphone should reject the call" &lt;&lt; endl;
+                    //.....softphone sync the state
+                }
+                });
+            if (success) {
+                //start ringing effect on the device
+                device-&gt;ring();
             }
+            while (true)
+            {
+                //...softphone normal event loop
+            }
+            //exit the sdk, should be called whenever possible
+            VtSDK::exit();
+        }
+        return 0;
+    }
 </pre> </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"/>
 </div><!-- contents -->

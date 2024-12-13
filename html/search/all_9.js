@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['vtdevice_0',['VtDevice',['../class_vt_device.html',1,'']]],
-  ['vtsdk_1',['VtSDK',['../class_vt_s_d_k.html',1,'']]]
+  ['unmute_5fcall_0',['UNMUTE_CALL',['../sdk_8h.html#a52a002900b5c97625b3689e34474f1afacf87ab31dfdca8ee713afccdea4e3913',1,'sdk.h']]],
+  ['unsubscribe_1',['unsubscribe',['../class_vt_device.html#ae8ae39bc4a84a1d3eb80a3dc1b38bf79',1,'VtDevice']]]
 ];

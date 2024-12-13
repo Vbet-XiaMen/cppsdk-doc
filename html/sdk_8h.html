@@ -25,7 +25,7 @@
   <td id="projectalign">
    <div id="projectname">VT SDK<span id="projectnumber">&#160;1.0.0</span>
    </div>
-   <div id="projectbrief">API for controlling the headset state</div>
+   <div id="projectbrief">API for managing the VT headset</div>
   </td>
  </tr>
  </tbody>
@@ -82,7 +82,8 @@ $(function() {
   <div class="headertitle"><div class="title">sdk.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;string&gt;</code><br />
+<div class="textblock"><code>#include &lt;thread&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 </div>
 <p><a href="sdk_8h_source.html">Go to the source code of this file.</a></p>
@@ -96,10 +97,14 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a52a002900b5c97625b3689e34474f1af" id="r_a52a002900b5c97625b3689e34474f1af"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52a002900b5c97625b3689e34474f1af">DeviceEvent</a> { <a class="el" href="#a52a002900b5c97625b3689e34474f1afa5e2b3e4e7fda132634f8b809dcbe4fa5">ONHOOK</a>
-, <a class="el" href="#a52a002900b5c97625b3689e34474f1afa4d6e3963890b92d02f33cfa1de6465ce">OFFHOOK</a>
-, <a class="el" href="#a52a002900b5c97625b3689e34474f1afa5415e9052565ecaf84f33d7f20996fd9">MUTE</a>
-, <a class="el" href="#a52a002900b5c97625b3689e34474f1afa59b228d9fec9b88833bfe5d812ed8ad4">REJECT</a>
+<tr class="memitem:a52a002900b5c97625b3689e34474f1af" id="r_a52a002900b5c97625b3689e34474f1af"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52a002900b5c97625b3689e34474f1af">DeviceEvent</a> { <br />
+&#160;&#160;<a class="el" href="#a52a002900b5c97625b3689e34474f1afa5f060fbadc203181bf0eccc0d1c8dbf6">ACCEPT_CALL</a>
+, <a class="el" href="#a52a002900b5c97625b3689e34474f1afa3adb039c296f637c0211be9c2f686ddc">END_CALL</a>
+, <a class="el" href="#a52a002900b5c97625b3689e34474f1afacc957a3cbc132994c9fb8a542af0e11e">MUTE_CALL</a>
+, <a class="el" href="#a52a002900b5c97625b3689e34474f1afacf87ab31dfdca8ee713afccdea4e3913">UNMUTE_CALL</a>
+, <br />
+&#160;&#160;<a class="el" href="#a52a002900b5c97625b3689e34474f1afa59b228d9fec9b88833bfe5d812ed8ad4">REJECT</a>
+<br />
  }</td></tr>
 <tr class="separator:a52a002900b5c97625b3689e34474f1af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -125,13 +130,15 @@ Enumerations</h2></td></tr>
 </div><div class="memdoc">
 <p>Possible events emitted from device upon users physical interaction </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a52a002900b5c97625b3689e34474f1afa5e2b3e4e7fda132634f8b809dcbe4fa5" name="a52a002900b5c97625b3689e34474f1afa5e2b3e4e7fda132634f8b809dcbe4fa5"></a>ONHOOK&#160;</td><td class="fielddoc"><p>Indicates device has gone to onhook state </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a52a002900b5c97625b3689e34474f1afa5f060fbadc203181bf0eccc0d1c8dbf6" name="a52a002900b5c97625b3689e34474f1afa5f060fbadc203181bf0eccc0d1c8dbf6"></a>ACCEPT_CALL&#160;</td><td class="fielddoc"><p>Incomming call was accepted by the device </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a52a002900b5c97625b3689e34474f1afa4d6e3963890b92d02f33cfa1de6465ce" name="a52a002900b5c97625b3689e34474f1afa4d6e3963890b92d02f33cfa1de6465ce"></a>OFFHOOK&#160;</td><td class="fielddoc"><p>Indicates device has gone to offhook state </p>
+<tr><td class="fieldname"><a id="a52a002900b5c97625b3689e34474f1afa3adb039c296f637c0211be9c2f686ddc" name="a52a002900b5c97625b3689e34474f1afa3adb039c296f637c0211be9c2f686ddc"></a>END_CALL&#160;</td><td class="fielddoc"><p>Call was ended by the device </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a52a002900b5c97625b3689e34474f1afa5415e9052565ecaf84f33d7f20996fd9" name="a52a002900b5c97625b3689e34474f1afa5415e9052565ecaf84f33d7f20996fd9"></a>MUTE&#160;</td><td class="fielddoc"><p>Indicates mute state has toggled </p>
+<tr><td class="fieldname"><a id="a52a002900b5c97625b3689e34474f1afacc957a3cbc132994c9fb8a542af0e11e" name="a52a002900b5c97625b3689e34474f1afacc957a3cbc132994c9fb8a542af0e11e"></a>MUTE_CALL&#160;</td><td class="fielddoc"><p>Call was muted by the device </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a52a002900b5c97625b3689e34474f1afa59b228d9fec9b88833bfe5d812ed8ad4" name="a52a002900b5c97625b3689e34474f1afa59b228d9fec9b88833bfe5d812ed8ad4"></a>REJECT&#160;</td><td class="fielddoc"><p>Indicates call rejection </p>
+<tr><td class="fieldname"><a id="a52a002900b5c97625b3689e34474f1afacf87ab31dfdca8ee713afccdea4e3913" name="a52a002900b5c97625b3689e34474f1afacf87ab31dfdca8ee713afccdea4e3913"></a>UNMUTE_CALL&#160;</td><td class="fielddoc"><p>Call was unmuted by the device </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a52a002900b5c97625b3689e34474f1afa59b228d9fec9b88833bfe5d812ed8ad4" name="a52a002900b5c97625b3689e34474f1afa59b228d9fec9b88833bfe5d812ed8ad4"></a>REJECT&#160;</td><td class="fielddoc"><p>Incomming call was rejected by the device </p>
 </td></tr>
 </table>
 

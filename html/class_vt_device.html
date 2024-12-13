@@ -25,7 +25,7 @@
   <td id="projectalign">
    <div id="projectname">VT SDK<span id="projectnumber">&#160;1.0.0</span>
    </div>
-   <div id="projectbrief">API for controlling the headset state</div>
+   <div id="projectbrief">API for managing the VT headset</div>
   </td>
  </tr>
  </tbody>
@@ -98,6 +98,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a200c91b27c57abe1ace5b682114b08f2" id="r_a200c91b27c57abe1ace5b682114b08f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a200c91b27c57abe1ace5b682114b08f2">subscribe</a> (void(*callback)(<a class="el" href="sdk_8h.html#a52a002900b5c97625b3689e34474f1af">DeviceEvent</a> code))</td></tr>
 <tr class="memdesc:a200c91b27c57abe1ace5b682114b08f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">subscribe to headset events  <br /></td></tr>
 <tr class="separator:a200c91b27c57abe1ace5b682114b08f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8ae39bc4a84a1d3eb80a3dc1b38bf79" id="r_ae8ae39bc4a84a1d3eb80a3dc1b38bf79"><td class="memItemLeft" align="right" valign="top"><a id="ae8ae39bc4a84a1d3eb80a3dc1b38bf79" name="ae8ae39bc4a84a1d3eb80a3dc1b38bf79"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribe</b> ()</td></tr>
+<tr class="memdesc:ae8ae39bc4a84a1d3eb80a3dc1b38bf79"><td class="mdescLeft">&#160;</td><td class="mdescRight">unsubscribe to headset events <br /></td></tr>
+<tr class="separator:ae8ae39bc4a84a1d3eb80a3dc1b38bf79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class represents the device entity and is used to interact with the device </p>
@@ -206,7 +210,7 @@ Public Member Functions</h2></td></tr>
 <p>subscribe to headset events </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">callback</td><td>A pointer to the callback function that can be called to receive headset state when users interact with the device </td></tr>
+    <tr><td class="paramname">callback</td><td>A pointer to the callback function that's called to receive headset state when users interact with the device </td></tr>
   </table>
   </dd>
 </dl>

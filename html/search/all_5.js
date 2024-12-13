@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['offhook_0',['OFFHOOK',['../sdk_8h.html#a52a002900b5c97625b3689e34474f1afa4d6e3963890b92d02f33cfa1de6465ce',1,'sdk.h']]],
-  ['onhook_1',['ONHOOK',['../sdk_8h.html#a52a002900b5c97625b3689e34474f1afa5e2b3e4e7fda132634f8b809dcbe4fa5',1,'sdk.h']]]
+  ['mute_0',['Mute',['../class_vt_device.html#a2d8fa0553c34252fb75c522cb7d07a14',1,'VtDevice']]],
+  ['mute_5fcall_1',['MUTE_CALL',['../sdk_8h.html#a52a002900b5c97625b3689e34474f1afacc957a3cbc132994c9fb8a542af0e11e',1,'sdk.h']]]
 ];
